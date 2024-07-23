@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* カレンダーの背景色設定 */
+.fc-daygrid-body,
+.fc-day {
+  background-color: white; 
+}
+
+.fc-col-header-cell {
+  background-color: #f5f5f5;
+  color: #333; 
+}
+
+.fc .fc-daygrid-day-frame {
+  height: 100%;
+  min-height: 100px;
+}
+
+
+/* カレンダー 土曜日のフォントカラー設定 */
+.fc-daygrid-day.fc-day-sat{
+	color: #64b5f6;
+  background-color: #eaf4ff;
+}
+
+/* カレンダー 日曜日のフォントカラー設定 */
+.fc-daygrid-day.fc-day-sun{
+	color: #ee827c;
+  background-color: #ffeaea;
+}
+
+/* お店の休業日の設定 */
+.fc-daygrid-day.fc-day-tue{
+	color: #ee827c;
+}
+
+.fc-prev-button::after, .fc-next-button::before{
+	content: attr(title);
+}
+
+
+.fc-header-toolbar,
+.fc-view-harness,
+.fc-col-header, .fc-daygrid-body, .fc-scrollgrid-sync-table{
+	width: 100%;
+	max-width: 1200px;
+}
+
+
+
+/* スマホのレスポンシブ */
+@media (max-width: 600px) {
+  .holiday-event {
+    font-size: 6px; /* スマートフォンでは少し小さく */
+    top: -10px;
+  }
+}
+
+/* タブレットのレスポンシブ */
+@media (min-width: 601px) and (max-width: 900px) {
+  .holiday-event {
+    font-size: 8px; 
+    top: -12px;
+  }
+}
+
+/* PCのレスポンシブ */
+@media (min-width: 901px) {
+  .holiday-event {
+    font-size: 12px; 
+    top: -15px;
+  }
+}
