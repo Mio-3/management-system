@@ -12,7 +12,7 @@ interface ShiftFormProps {
   isEntryDrawerOpen: boolean;
 }
 
-interface ShiftFormValues {
+export interface ShiftFormValues {
   date: string;
   category: string;
 }

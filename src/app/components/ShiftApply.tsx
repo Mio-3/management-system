@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import ShiftForm from "./ShiftForm";
+import ShiftForm , { ShiftFormValues } from "./ShiftForm";
 
 const ShiftApply = () => {
   const [isEntryDrawerOpen, setIsEntryDrawerOpen] = useState(false);
-  const [shifts, setShifts] = useState([]);
+  const [shifts, setShifts] = useState<ShiftFormValues[]>([]);
 
   const closeForm = () => {
     setIsEntryDrawerOpen(!isEntryDrawerOpen);
@@ -15,7 +15,7 @@ const ShiftApply = () => {
     setIsEntryDrawerOpen(!isEntryDrawerOpen);
   };
 
-  const handleSaveShift = (shift) => {
+  const handleSaveShift = (shift: ShiftFormValues) => {
     setShifts([...shifts, shift]);
   };
 
