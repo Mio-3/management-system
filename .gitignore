@@ -28,7 +28,7 @@ yarn-error.log*
 # local env files
 .env*.local
 .env
-fastap/.env
+fastapi/.env
 
 # vercel
 .vercel
