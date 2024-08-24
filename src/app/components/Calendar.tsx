@@ -3,10 +3,6 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import useSWR from "swr";
-import WbSunnyIcon from "@mui/icons-material/WbSunny";
-import NightlightIcon from "@mui/icons-material/Nightlight";
-import MoreTimeIcon from "@mui/icons-material/MoreTime";
-import CloseIcon from "@mui/icons-material/Close"; 
 
 interface Holiday {
   date: string;
@@ -30,11 +26,16 @@ const fetcher = async (url: string) => {
   }));
 };
 
-const Calendar = () => {
+const Calendar = ( { shifts } : { shifts: Shift[] } ) => {
   const { data: events, error } = useSWR<Array<Holiday>>("https://date.nager.at/api/v3/NextPublicHolidays/JP", fetcher);
 
   if (error) return <div>Failed to load</div>;
   if (!events) return <div>Loading...</div>;
+
+  const shiftEvents = shifts.map((shift) => ({
+    title: shift.category, 
+    date: shift.date,
+  }));
 
   return (
     <div>
@@ -44,14 +45,25 @@ const Calendar = () => {
         initialView="dayGridMonth"
         height="auto"
         timeZone="Asia/Tokyo"
-        events={events.map((event) => ({
-          title: event.title,
-          date: event.date,
-          backgroundColor: "transparent",
-          textColor: "red",
-          borderColor: "transparent",
-          classNames: "holiday-event",
-        }))}
+        events={[
+          ...events.map((event) => ({
+            title: event.title,
+            date: event.date,
+            backgroundColor: "transparent",
+            textColor: "red",
+            borderColor: "transparent",
+            classNames: "holiday-event",
+          })),
+          ...shiftEvents.map((shift) => ({
+            title: shift.title,
+            date: shift.date,
+            textColor: "darkslategray",
+            textBold: "true",
+            backgroundColor: "transparent",
+            borderColor: "transparent",
+            classNames: "shift-event",
+          })),
+        ]}
         headerToolbar={{
           start: "prev",
           center: "title",

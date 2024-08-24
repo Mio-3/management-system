@@ -1,26 +1,10 @@
-version: '3.8'
-
 services:
-  db:
-    image: postgres:13
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    env_file:
-      - ./fastapi/.env
-    ports:
-      - "5432:5432"
-
   web:
     build: ./fastapi
     volumes:
       - ./fastapi:/app
     ports:
       - "8000:8000"
-    depends_on:
-      - db
     env_file:
-      - ./fastapi/.env
+      - .env
     working_dir: /business-management/fastapi
-
-volumes:
-  postgres_data:

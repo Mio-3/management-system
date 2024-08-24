@@ -57,6 +57,10 @@
     font-size: 6px; /* スマートフォンでは少し小さく */
     top: -10px;
   }
+  .shift-event {
+    font-size: 10px;
+    top: -13px;
+  }
 }
 
 /* タブレットのレスポンシブ */
@@ -65,6 +69,10 @@
     font-size: 8px; 
     top: -12px;
   }
+  .shift-event {
+    font-size: 14px;
+    top: -16px;
+  }
 }
 
 /* PCのレスポンシブ */
@@ -72,5 +80,9 @@
   .holiday-event {
     font-size: 12px; 
     top: -15px;
+  }
+  .shift-event {
+    font-size: 20px;
+    top: -20px;
   }
 }

@@ -89,25 +89,25 @@ const ShiftForm = ({ onSaveShift, onCloseForm, isEntryDrawerOpen }: ShiftFormPro
                 <MenuItem value="">
                   <em>空欄</em>
                 </MenuItem>
-                <MenuItem value="noon">
+                <MenuItem value="昼">
                   <ListItemIcon>
                     <WbSunnyIcon />
                   </ListItemIcon>
                   昼
                 </MenuItem>
-                <MenuItem value="night">
+                <MenuItem value="夜">
                   <ListItemIcon>
                     <NightlightIcon />
                   </ListItemIcon>
                   夜
                 </MenuItem>
-                <MenuItem value="all-day">
+                <MenuItem value="昼＋夜">
                   <ListItemIcon>
                     <MoreTimeIcon />
                   </ListItemIcon>
                   1日
                 </MenuItem>
-                <MenuItem value="cross">
+                <MenuItem value="✖️">
                   <ListItemIcon>
                     <CloseIcon />
                   </ListItemIcon>

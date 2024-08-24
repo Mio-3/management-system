@@ -1,3 +1,9 @@
 fastapi
 uvicorn[standard]
 psycopg2-binary
+pydantic
+sqlalchemy
+datetime
+supabase
+python-decouple
+uuid
