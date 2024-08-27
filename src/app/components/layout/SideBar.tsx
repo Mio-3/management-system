@@ -1,6 +1,8 @@
 import { Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar } from "@mui/material";
 import StoreRoundedIcon from "@mui/icons-material/StoreRounded";
 import RamenDiningRoundedIcon from "@mui/icons-material/RamenDiningRounded";
+import NewReleasesIcon from '@mui/icons-material/NewReleases';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import { CSSProperties } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -22,7 +24,9 @@ const SideBar = ({ drawerWidth, mobileOpen, handleDrawerTransitionEnd, handleDra
   const pathname = usePathname();
   const MenuItems: menuItem[] = [
     { text: "ホーム", path: "/", icon: StoreRoundedIcon },
-    { text: "スケジュール", path: "/Schedule", icon: RamenDiningRoundedIcon },
+    { text: "シフト入力", path: "/shifts", icon: RamenDiningRoundedIcon },
+    { text: "シフト確認", path: "/shifts/confirm", icon: NewReleasesIcon},
+    { text: "管理者専用", path: "/manager", icon: AdminPanelSettingsIcon},
   ];
 
   const activeLinkStyle: CSSProperties = {
