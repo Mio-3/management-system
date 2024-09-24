@@ -37,7 +37,7 @@ const ShiftApply = () => {
 
   const fetchShifts = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:8000/shifts", {
+      const res = await fetch("http://127.0.0.1:8000/shifts/", {
         next: { revalidate: 10 }, // ISR
       });
       const data = await res.json();

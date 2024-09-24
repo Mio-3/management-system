@@ -7,3 +7,4 @@ datetime
 supabase
 python-decouple
 uuid
+strawberry-graphql
