@@ -1,16 +1,21 @@
 import os
 import strawberry
-from supabase import create_client, Client
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import OAuth2PasswordBearer
 from strawberry.asgi import GraphQL
+from pymongo import MongoClient
 
 
-url: str = os.environ.get("SUPABASE_URL")
-key: str = os.environ.get("SUPABASE_KEY")
-supabase: Client = create_client(url, key)
+client = MongoClient(os.environ.get("MONGO_URL"))
+db = client['management_system']
+shift_collection = db['shifts']
+users_collection = db['users']
+
+
 app = FastAPI()
 
+oauth2_schema = OAuth2PasswordBearer(tokenUrl="token")
 
 origins = [
   "http://localhost:3000",
@@ -28,31 +33,39 @@ app.add_middleware(
 
 @strawberry.type
 class Shift:
-    id: str
+    id: int
     date: str
     category: str
-    employee_id: str
+
+
+@strawberry.input
+class ShiftRegister:
+    date: str
+    category: str
+
+
+@strawberry.type
+class User:
+    name: str
+    login_id: str
 
 
 @strawberry.type
 class Query:
     @strawberry.field
-    async def get_shifts(self) -> list[Shift]:
-        response = supabase.table("shifts").select("*").execute()
-        shifts_data = response.data
-
-        return [
-            Shift(
-                id=shift['id'],
-                date=shift['date'],
-                category=shift['category'],
-                employee_id=shift['employee_id']
-            )
-            for shift in shifts_data
-        ]
+    def get_shifts(self) -> Shift:
+        return Shift(id=1, date="2024-10-01", category="昼")
 
 
-schema = strawberry.Schema(query=Query)
+@strawberry.type
+class Mutation:
+    @strawberry.field
+    def create_shift(self, shift: ShiftRegister) -> Shift:
+        shift_collection.insert_one(shift.__dict__)
+        return shift
+
+
+schema = strawberry.Schema(query=Query, mutation=Mutation)
 
 graphql_app = GraphQL(schema)
 

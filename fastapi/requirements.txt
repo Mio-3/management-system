@@ -4,7 +4,7 @@ psycopg2-binary
 pydantic
 sqlalchemy
 datetime
-supabase
 python-decouple
 uuid
 strawberry-graphql
+pymongo
