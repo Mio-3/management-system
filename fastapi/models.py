@@ -18,7 +18,32 @@ class ShiftUpdate(ShiftBase):
 
 
 class Shift(ShiftBase):
-    id: UUID
+    id: str
 
     class Config:
         orm_mode = True
+
+
+class UserBase(BaseModel):
+    name: str
+    staff_id: str
+    role: str
+
+
+class UserRequest(UserBase):
+    id: str
+
+
+class LoginRequest(BaseModel):
+    staff_id: str
+    password: str
+
+
+class TokenData(BaseModel):
+    staff_id: Optional[str] = None
+
+
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str
+    user: UserResponse

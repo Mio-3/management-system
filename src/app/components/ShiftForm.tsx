@@ -6,13 +6,13 @@ import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import NightlightIcon from "@mui/icons-material/Nightlight";
 import MoreTimeIcon from "@mui/icons-material/MoreTime";
 
-interface ShiftFormProps {
+type ShiftFormProps = {
   onSaveShift: (data: ShiftFormValues) => void;
   onCloseForm: () => void;
   isEntryDrawerOpen: boolean;
 }
 
-export interface ShiftFormValues {
+export type ShiftFormValues = {
   date: string;
   category: string;
 }

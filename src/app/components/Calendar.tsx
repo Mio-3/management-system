@@ -3,13 +3,14 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import useSWR from "swr";
+import { StringValueNode } from "graphql";
 
-interface Holiday {
+type Holiday = {
   date: string;
   title: string;
 }
 
-interface Shift {
+type Shift = {
   date: string;
   category: string;
 }

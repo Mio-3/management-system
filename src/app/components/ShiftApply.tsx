@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import ShiftForm, { ShiftFormValues } from "./ShiftForm";
 import Calendar from "./Calendar";
 
-interface ShiftEvent {
+type ShiftEvent ={
   title: string;
   date: string;
 }
