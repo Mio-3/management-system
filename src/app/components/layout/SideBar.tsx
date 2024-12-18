@@ -24,8 +24,8 @@ const SideBar = ({ drawerWidth, mobileOpen, handleDrawerTransitionEnd, handleDra
   const pathname = usePathname();
   const MenuItems: menuItem[] = [
     { text: "ホーム", path: "/", icon: StoreRoundedIcon },
-    { text: "シフト入力", path: "/shifts", icon: RamenDiningRoundedIcon },
-    { text: "シフト確認", path: "/shifts/confirm", icon: NewReleasesIcon},
+    { text: "カレンダー", path: "/shifts", icon: RamenDiningRoundedIcon },
+    { text: "シフト提出掲示板", path: "/shifts/confirm", icon: NewReleasesIcon},
     { text: "管理者専用", path: "/manager", icon: AdminPanelSettingsIcon},
   ];
 

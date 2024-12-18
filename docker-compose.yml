@@ -1,10 +1,31 @@
 services:
   web:
-    build: ./fastapi
+    build:
+      context: ./fastapi
     volumes:
-      - ./fastapi:/app
+      - ./fastapi:/business-management/fastapi
     ports:
       - "8000:8000"
     env_file:
       - .env
     working_dir: /business-management/fastapi
+    depends_on:
+      - db
+    networks:
+      - app-network
+  
+  db:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - app-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  app-network:
+    driver: bridge

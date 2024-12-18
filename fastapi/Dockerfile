@@ -2,7 +2,7 @@
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /business-management/fastapi
 
 # Copy the requirements file
 COPY requirements.txt .
