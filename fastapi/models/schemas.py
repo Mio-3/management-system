@@ -28,12 +28,12 @@ class ShiftStatus(str, Enum):
 
 
 class ShiftPost(BaseModel):
-    id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
     staff_name: str
     message: Optional[str] = None
 
 
 class ShiftPostDB(ShiftPost):
+    id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
     created_at: datetime = Field(
       default_factory=lambda: datetime.now(pytz.timezone("Asia/Tokyo"))
     )

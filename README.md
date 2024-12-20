@@ -5,6 +5,10 @@
 ## 進捗
 <img width="900" alt="スクリーンショット スクリーンショット 2024-11-18 3.24.08.png" src="https://github.com/user-attachments/assets/29a52df8-061c-4ec4-9e35-f4a5e8122510">
 <img width="900" src= "https://github.com/user-attachments/assets/d0e86634-feb8-4bf7-9810-e3c53feb33cb">
+<img width="1402" alt="スクリーンショット 2024-12-20 22 03 30" src="https://github.com/user-attachments/assets/11c93ec5-a5ea-4ecd-b525-9962e0bd403f" />
+
+FastAPIがSwagger UIを自動で生成してくれるのが非常に助かる...
+
 
 # URL
 
