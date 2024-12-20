@@ -4,17 +4,21 @@ from typing import List
 from datetime import datetime
 from bson import ObjectId
 from models.schemas import ShiftPost, ShiftPostDB
+from dependencies.database import get_shifts_collection as get_collection
 import pytz
 
 router = APIRouter()
 
 
-async def get_collection() -> AsyncIOMotorCollection:
-    return router.app.collection_shifts
-
-
-@router.post("/post/", response_model=ShiftPostDB, status_code=status.HTTP_201_CREATED)
-async def create_post(post: ShiftPost, collection: AsyncIOMotorCollection = Depends(get_collection)):
+@router.post(
+  "/post/",
+  response_model=ShiftPostDB,
+  status_code=status.HTTP_201_CREATED
+)
+async def create_post(
+  post: ShiftPost,
+  collection: AsyncIOMotorCollection = Depends(get_collection)
+):
     post_dict = post.dict()
 
     jst = pytz.timezone('Asia/Tokyo')
@@ -31,7 +35,11 @@ async def create_post(post: ShiftPost, collection: AsyncIOMotorCollection = Depe
     return created_post
 
 
-@router.get("/posts/", response_model=List[ShiftPostDB], status_code=status.HTTP_200_OK)
+@router.get(
+  "/posts/",
+  response_model=List[ShiftPostDB],
+  status_code=status.HTTP_200_OK
+)
 async def get_shift_posts(
     collection: AsyncIOMotorCollection = Depends(get_collection)
 ):
@@ -48,5 +56,24 @@ async def get_shift_posts(
         raise HTTPException(status_code=500, detail=str(e))
 
 
-
-
+# APIドキュメントの動作テストで追加されたデータの削除
+@router.delete(
+  "/posts/all/",
+  response_model=dict,
+  status_code=status.HTTP_200_OK
+)
+async def delete_all_posts(
+  collection: AsyncIOMotorCollection = Depends(get_collection)
+):
+    try:
+        result = await collection.delete_many({})
+        
+        return {
+          "message": "全ての投稿を削除しました",
+          "deleted_count": result.deleted_count
+        }
+    except Exception as e:
+        raise HTTPException(
+          status_code=500,
+          detail=f"削除中にエラーが発生しました: {str(e)}"
+        )
